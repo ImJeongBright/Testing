@@ -2,6 +2,7 @@ package sec;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -23,13 +24,33 @@ class MultiplierTest {
     }
 
     @Test
+    @DisplayName("Assertions를 이용한 multiply (Positive)")
     public void multiplyTest1() {
         Assertions.assertEquals(6, multiplier.multiply(3, 2));
     }
+
     @Test
+    @DisplayName("Assertions를 이용한 multiply (Negative)")
     public void multiplyTest2() {
         Assertions.assertEquals(-6, multiplier.multiply(3, -2));
     }
+
+    @Test
+    @DisplayName("0 곱하기")
+    public void multiplyZero() {
+        Assertions.assertEquals(0, multiplier.multiply(3, 0));
+    }
+
+    @Test
+    @DisplayName("Mockito를 이용한 multiply (Positive)")
+    public void multiplyTestWithMockito() {
+        IMultiplier multiplier2 = Mockito.mock(IMultiplier.class);
+
+        Mockito.when(multiplier2.multiply(12, -2)).thenReturn(-24);
+
+        Assertions.assertEquals(-24, multiplier2.multiply(12, -2));
+    }
+
 
 }
 

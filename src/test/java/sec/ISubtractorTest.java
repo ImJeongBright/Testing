@@ -29,4 +29,11 @@ class SubtractorTest {
         Assertions.assertEquals(-2, subtractor.subtract(3, 5));
     }
 
+    @Test
+    public void subtractTestMockito() {
+        ISubtractor subtractors = Mockito.mock(ISubtractor.class);
+        Mockito.when(subtractors.subtract(3,-6)).thenReturn(-3);
+        Assertions.assertEquals(-3, subtractors.subtract(3, -6));
+    }
+
 }
